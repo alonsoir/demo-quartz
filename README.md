@@ -3,7 +3,7 @@ A demo with spring quartz to consume data from a rest api every seconds, saving 
 WORK IN PROGRESS.
 
 1. Consuming data from the rest api every time. DONE
-2. Saving data to h2. In Progress.
-3. Saving data to Cassandra. NOT YET.
-4. Saving data to Kafka. NOT YET.
+2. Saving data to h2. DONE.
+3. Consume data from kafka topic to save it to Cassandra. NOT YET.
+4. Saving data to Kafka. In Progress.
 5. Moving data to a websocket channel. NOT YET. 
