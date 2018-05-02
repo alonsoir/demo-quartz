@@ -9,3 +9,18 @@ WORK IN PROGRESS.
 5. Moving data to a websocket channel. NOT YET.
 6. Adding docker file. In progress.
 7. Adding a RESTfull controller. NOT YET. 
+
+
+Actually i have to run zookeeper and kafka before running the process:
+
+mvn clean package
+
+zkServer start
+
+kafka-server-start /usr/local/etc/kafka/server.properties
+
+# aironman is the topic name. If you want to use another one else, modify message.topic.name within application.properties file, then run again mvn clean package.
+
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic aironman
+
+java -jar target/demo-quartz-0.0.1-SNAPSHOT.jar
