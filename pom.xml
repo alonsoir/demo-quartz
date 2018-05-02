@@ -104,7 +104,7 @@
 						of the image -->
 					<resources>
 						<resource>
-							<targetPath>/</targetPath>
+							<targetPath>/target</targetPath>
 							<directory>${project.build.directory}</directory>
 							<include>${project.build.finalName}.jar</include>
 						</resource>
