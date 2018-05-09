@@ -19,7 +19,13 @@ public class MessageProducer {
     private String filteredTopicName;
 
     public void sendMessageToTopic (BitcoinEuroKafkaEntity entity) {
-    	producer.send(topicName,entity);
+    	try {
+    		producer.send(topicName,entity);
+    	}catch (Exception e) {
+    		System.out.println("Something went wrong when sending entity to topic: " + e.getMessage());
+    	}catch (Throwable th) {
+    		System.out.println("Something went wrong when sending entity to topic: " + th.getMessage());
+    	}
     }
     
     public void sendMessageToPartitionedTopicName(BitcoinEuroKafkaEntity entity) {
