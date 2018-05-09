@@ -1,7 +1,15 @@
 version: '3.6'
 services:
         demo-quartz:
-                build: .
+                image: aironman/demo-quartz:0.0.1-SNAPSHOT
+                deploy:
+                  replicas: 5
+                  resources:
+                    limits:
+                      cpus: "0.5"
+                      memory: 512M
+                  restart_policy:
+                      condition: on-failure
         zookeeper:
                 image: wurstmeister/zookeeper
                 ports:
