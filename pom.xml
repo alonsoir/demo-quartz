@@ -28,7 +28,10 @@
 		<docker-compose-maven-plugin-version>1.0.5</docker-compose-maven-plugin-version>
 		<spring-cloud-starter-eureka-version>1.4.4.RELEASE</spring-cloud-starter-eureka-version>
 		<spring-cloud-starter-feign-version>1.4.4.RELEASE</spring-cloud-starter-feign-version>
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3a07a67c35410f24d88090189c7ce264e943f50
 	</properties>
 
 	<dependencies>
@@ -37,6 +40,13 @@
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 			<version>${spring-cloud-starter-eureka-version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>${spring-cloud-starter-feign-version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
