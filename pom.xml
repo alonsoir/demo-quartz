@@ -22,19 +22,32 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>10</java.version>
 		<quartz.version>2.2.3</quartz.version>
 		<dockerfile-maven-version>1.4.0</dockerfile-maven-version>
 		<docker-compose-maven-plugin-version>1.0.5</docker-compose-maven-plugin-version>
 		<spring-cloud-starter-eureka-version>1.4.4.RELEASE</spring-cloud-starter-eureka-version>
 		<spring-cloud-starter-feign-version>1.4.4.RELEASE</spring-cloud-starter-feign-version>
-<<<<<<< HEAD
-
-=======
->>>>>>> d3a07a67c35410f24d88090189c7ce264e943f50
 	</properties>
 
 	<dependencies>
+		<!-- needed for jdk10-->
+		<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-core</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>2.2.11</version>
+</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
