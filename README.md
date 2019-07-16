@@ -67,4 +67,4 @@ Check application.properties file and change this line:
 
 TODO
 
-Create an interface an its implementation service class to manage h2 pojos and a decent CommandHandler.
+Create an interface an its implementation service class to manage h2 pojos and a decent CommandHandler, because BitCoinEuroServiceImpl class is breaking single responsibility principle. CommandHandler should inherit BitCoinEuroService and KafkaProducer and KafkaConsumer. With KafkaProducer in CommandHandler, it should indicate to Query (Q in CQRS) that data is already persisted and ready to be consumed in query part.
