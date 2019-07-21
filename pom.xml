@@ -6,11 +6,14 @@
 
 	<groupId>com.aironman</groupId>
 	<artifactId>demo-quartz</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>demo-quartz</name>
-	<description>A demo with spring quartz to consume data from a rest api every seconds, saving data to h2, elastic,kafka, showing data using a websocket channel throug a rest controller.</description>
+	<description>
+		A demo with spring quartz to consume data from a rest api every seconds, saving data to h2, elastic,kafka, showing data using a websocket channel throug a rest controller.
+		0.0.2-SNAPSHOT is ready to work with jdk11.
+	</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -24,8 +27,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<quartz.version>2.2.3</quartz.version>
-		<dockerfile-maven-version>1.4.0</dockerfile-maven-version>
-		<docker-compose-maven-plugin-version>1.0.5</docker-compose-maven-plugin-version>
+		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
+		<docker-compose-maven-plugin-version>2.4.0</docker-compose-maven-plugin-version>
 		<spring-cloud-starter-eureka-version>1.4.4.RELEASE</spring-cloud-starter-eureka-version>
 		<spring-cloud-starter-feign-version>1.4.4.RELEASE</spring-cloud-starter-feign-version>
 	</properties>
@@ -43,11 +46,6 @@
 			<version>${spring-cloud-starter-feign-version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-feign</artifactId>
-			<version>${spring-cloud-starter-feign-version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -111,25 +109,28 @@
 
 		<!-- dependencies to work with jdk11-->
 		<dependency>
-    <groupId>javax.xml.bind</groupId>
-    <artifactId>jaxb-api</artifactId>
-    <version>2.2.11</version>
-</dependency>
-<dependency>
-    <groupId>com.sun.xml.bind</groupId>
-    <artifactId>jaxb-core</artifactId>
-    <version>2.2.11</version>
-</dependency>
-<dependency>
-    <groupId>com.sun.xml.bind</groupId>
-    <artifactId>jaxb-impl</artifactId>
-    <version>2.2.11</version>
-</dependency>
-<dependency>
-    <groupId>javax.activation</groupId>
-    <artifactId>activation</artifactId>
-    <version>1.1.1</version>
-</dependency>
+    		<groupId>javax.xml.bind</groupId>
+    		<artifactId>jaxb-api</artifactId>
+    		<version>2.2.11</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-core</artifactId>
+    		<version>2.2.11</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-impl</artifactId>
+    		<version>2.2.11</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>javax.activation</groupId>
+    		<artifactId>activation</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
 
 	</dependencies>
 

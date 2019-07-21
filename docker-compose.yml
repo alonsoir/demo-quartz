@@ -1,7 +1,11 @@
 version: '3.6'
 services:
   demo-quartz:
-    image: aironman/demo-quartz:0.0.1-SNAPSHOT
+    image: aironman/demo-quartz:0.0.2-SNAPSHOT
+    links: 
+      - "eureka-server"
+      - "zookeeper"
+      - "kafka"
     deploy:
       replicas: 5
       resources:
@@ -27,3 +31,9 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  eureka-server:
+    image:  springcloud/eureka
+    hostname: eureka-server
+    ports:
+      - "8761:8761"

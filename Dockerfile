@@ -1,5 +1,6 @@
-FROM openjdk:8-jre
+FROM adoptopenjdk/openjdk12:latest
 MAINTAINER Alonso Isidoro <alonsoir@gmail.com>
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/aironman/demo-quartz.jar"]
 ARG JAR_FILE
-ADD target/${JAR_FILE} /usr/share/aironman/demo-quartz.jar
+RUN mkdir /opt/app
+COPY target/demo-quartz-0.0.2-SNAPSHOT.jar /opt/app/demo-quartz.jar
+CMD ["java", "-jar", "/opt/app/demo-quartz.jar"]
