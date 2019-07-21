@@ -62,6 +62,7 @@ I already have this topic in my local containers, you will have to run within ka
           kafka-topics.sh --create --zookeeper 172.10.0.4:2181 --replication-factor 1 --partitions 1 --topic aironman
 
 You can change aironman topic`s name with whatever you want. 
+
 Check application.properties file and change this line:
 
           message.topic.name=aironman
@@ -77,3 +78,11 @@ TODO
      Create handlers to introduce data from another cryptocurrencies into kafka topics.
 
      Why Eureka server is not running while i run the server? wtf! because it is not present in docker-compose.yml. CHECK!
+
+TROUBLESHOOTING
+
+     I had encountered problems with latest kafka release, but reading this thread, it got solved. 
+     https://stackoverflow.com/questions/35788697/leader-not-available-kafka-in-console-producer
+
+     Probably i will have to create the topic programmatically because i have to run the project within a docker environment. 
+     Docker doesnt create the topic by default, i would have to login to kafka docker container and create the topic manually...
