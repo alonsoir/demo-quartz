@@ -28,10 +28,6 @@
 		<docker-compose-maven-plugin-version>1.0.5</docker-compose-maven-plugin-version>
 		<spring-cloud-starter-eureka-version>1.4.4.RELEASE</spring-cloud-starter-eureka-version>
 		<spring-cloud-starter-feign-version>1.4.4.RELEASE</spring-cloud-starter-feign-version>
-<<<<<<< HEAD
-
-=======
->>>>>>> d3a07a67c35410f24d88090189c7ce264e943f50
 	</properties>
 
 	<dependencies>
@@ -112,6 +108,28 @@
 			<artifactId>spring-kafka</artifactId>
 			<version>2.1.6.RELEASE</version>
 		</dependency>
+
+		<!-- dependencies to work with jdk11-->
+		<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-core</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>javax.activation</groupId>
+    <artifactId>activation</artifactId>
+    <version>1.1.1</version>
+</dependency>
 
 	</dependencies>
 
