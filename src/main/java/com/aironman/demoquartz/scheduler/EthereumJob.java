@@ -1,5 +1,6 @@
 package com.aironman.demoquartz.scheduler;
 
+import com.aironman.demoquartz.service.EthereumJobService;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -9,24 +10,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.aironman.demoquartz.service.SampleJobService;
-
-// component to fire bitcoin quartz job (SampleJobService)
 @Component
 @DisallowConcurrentExecution
-public class SampleJob implements Job {
+public class EthereumJob implements Job{
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private SampleJobService jobService;
+    private EthereumJobService jobService;
 
+    @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
-        logger.info("SampleJob ** {} ** fired @ {}", context.getJobDetail().getKey().getName(), context.getFireTime());
+        logger.info("EthereumJob ** {} ** fired @ {}", context.getJobDetail().getKey().getName(), context.getFireTime());
 
-        jobService.executeSampleJob();
+        jobService.executeJob();
 
-        logger.info("Next SampleJob scheduled @ {}", context.getNextFireTime());
+        logger.info("Next EthereumJob scheduled @ {}", context.getNextFireTime());
+
     }
 }

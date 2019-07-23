@@ -10,6 +10,9 @@ import com.aironman.demoquartz.kafka.BitcoinEuroKafkaEntity;
 import com.aironman.demoquartz.model.BitcoinEuroEntity;
 import com.aironman.demoquartz.pojo.BitcoinEuro;
 
+/***
+ * Service to handle BTC
+ */
 @Service
 public class SampleJobService {
     
@@ -38,9 +41,9 @@ public class SampleJobService {
 	    bitCoinService.sendMessageToTopic(kafkaEntity);
 	    logger.info("entity sent to topic...");
 	    
-	    Thread.sleep(5000);
-	} catch (InterruptedException e) {
-	    logger.error("Error while executing sample job", e);
+	    //Thread.sleep(5000);
+	//} catch (InterruptedException e) {
+	//    logger.error("Error while executing sample job", e);
 	} finally {
 	    logger.info("Sample job has finished...");
 	}

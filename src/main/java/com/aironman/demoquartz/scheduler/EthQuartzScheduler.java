@@ -21,7 +21,7 @@ import javax.annotation.PostConstruct;
 
 @Configuration
 @ConditionalOnExpression("'${using.spring.schedulerFactory}'=='true'")
-public class SpringQrtzScheduler {
+public class EthQuartzScheduler {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,8 +30,7 @@ public class SpringQrtzScheduler {
 
     @PostConstruct
     public void init() {
-
-        logger.info("SpringQrtzScheduler POSTCONSTRUCT...");
+        logger.info("EthQuartzScheduler POSTCONSTRUCT...");
     }
 
     @Bean
@@ -49,7 +48,7 @@ public class SpringQrtzScheduler {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 
-        logger.info("Setting the SpringQrtzScheduler BTC up");
+        logger.info("Setting the ETH Scheduler up");
         schedulerFactory.setJobFactory(springBeanJobFactory());
         schedulerFactory.setJobDetails(job);
         schedulerFactory.setTriggers(trigger);
@@ -61,11 +60,11 @@ public class SpringQrtzScheduler {
     public JobDetailFactoryBean jobDetail() {
 
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
-        jobDetailFactory.setJobClass(SampleJob.class);
-        jobDetailFactory.setName("BTC-Qrtz_Job_Detail");
-        jobDetailFactory.setDescription("Invoke BTC Job service...");
+        jobDetailFactory.setJobClass(EthereumJob.class);
+        jobDetailFactory.setName("ETH-Qrtz_Job_Detail");
+        jobDetailFactory.setDescription("Invoke ETH Job service...");
         jobDetailFactory.setDurability(true);
-        logger.info("BTC Quartz scheduler set up!");
+        logger.info("ETH Quartz scheduler set up!");
         return jobDetailFactory;
     }
 
@@ -75,15 +74,14 @@ public class SpringQrtzScheduler {
         SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
         trigger.setJobDetail(job);
 
-        int frequencyInSec = 10;
-        logger.info("Configuring trigger to fire BTC-scheduler every {} seconds", frequencyInSec);
+        int frequencyInSec = 20;
+        logger.info("Configuring trigger to fire EthQuartzScheduler every {} seconds", frequencyInSec);
 
         trigger.setRepeatInterval(frequencyInSec * 1000);
         trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-        trigger.setName("BTC-Qrtz_Trigger");
-        logger.info("BTC-Qrtz_Trigger TRIGGERED!");
+        trigger.setName("ETH-Qrtz_Trigger");
+        logger.info("ETH-Qrtz_Trigger TRIGGERED!");
         return trigger;
     }
-
 
 }
