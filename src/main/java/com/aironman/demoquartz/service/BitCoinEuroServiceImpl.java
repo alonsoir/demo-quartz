@@ -26,6 +26,7 @@ public class BitCoinEuroServiceImpl implements BitCoinEuroService {
 	}
 
 	public void sendMessageToTopic(BitcoinEuroKafkaEntity entity) {
+
 		producer.sendMessageToTopic(entity);
 	}
 

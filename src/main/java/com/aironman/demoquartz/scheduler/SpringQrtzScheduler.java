@@ -1,7 +1,6 @@
 package com.aironman.demoquartz.scheduler;
 
-import javax.annotation.PostConstruct;
-
+import com.aironman.demoquartz.config.AutoWiringSpringBeanJobFactory;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
@@ -18,7 +17,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
-import com.aironman.demoquartz.config.AutoWiringSpringBeanJobFactory;
+import javax.annotation.PostConstruct;
 
 @Configuration
 @ConditionalOnExpression("'${using.spring.schedulerFactory}'=='true'")
@@ -31,7 +30,8 @@ public class SpringQrtzScheduler {
 
     @PostConstruct
     public void init() {
-        logger.info("Hello world from Spring...");
+
+        logger.info("SpringQrtzScheduler POSTCONSTRUCT...");
     }
 
     @Bean
@@ -49,7 +49,7 @@ public class SpringQrtzScheduler {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 
-        logger.debug("Setting the Scheduler up");
+        logger.info("Setting the SpringQrtzScheduler BTC up");
         schedulerFactory.setJobFactory(springBeanJobFactory());
         schedulerFactory.setJobDetails(job);
         schedulerFactory.setTriggers(trigger);
@@ -62,9 +62,10 @@ public class SpringQrtzScheduler {
 
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
         jobDetailFactory.setJobClass(SampleJob.class);
-        jobDetailFactory.setName("Qrtz_Job_Detail");
-        jobDetailFactory.setDescription("Invoke Sample Job service...");
+        jobDetailFactory.setName("BTC-Qrtz_Job_Detail");
+        jobDetailFactory.setDescription("Invoke BTC Job service...");
         jobDetailFactory.setDurability(true);
+        logger.info("BTC Quartz scheduler set up!");
         return jobDetailFactory;
     }
 
@@ -75,11 +76,14 @@ public class SpringQrtzScheduler {
         trigger.setJobDetail(job);
 
         int frequencyInSec = 10;
-        logger.info("Configuring trigger to fire every {} seconds", frequencyInSec);
+        logger.info("Configuring trigger to fire BTC-scheduler every {} seconds", frequencyInSec);
 
         trigger.setRepeatInterval(frequencyInSec * 1000);
         trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-        trigger.setName("Qrtz_Trigger");
+        trigger.setName("BTC-Qrtz_Trigger");
+        logger.info("BTC-Qrtz_Trigger TRIGGERED!");
         return trigger;
     }
+
+
 }

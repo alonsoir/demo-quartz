@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.system.ApplicationPidFileWriter;
+// import org.springframework.boot.system.ApplicationPidFileWriter;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 @EnableEurekaClient
@@ -19,11 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoQuartzApplication {
     
     Logger logger = LoggerFactory.getLogger(getClass());
-    
+
+    public static String cryptoType;
+
     public static void main(String[] args) {
 	SpringApplication springApplication = new SpringApplication(DemoQuartzApplication.class);
-	springApplication.addListeners(new ApplicationPidFileWriter());
+	//springApplication.addListeners(new ApplicationPidFileWriter());
+    Arrays.stream(args).forEach(System.out::println);
+
+    if (args.length != 1) {
+        System.out.println("Insufficient arguments. Must be btc or eth.");
+        System.exit(-1);
+    }
+    cryptoType = args[0];
+    System.out.println("Selected TYPE: " + cryptoType);
 	springApplication.run(args);
+    System.exit(0);
     }
     
     @PostConstruct
