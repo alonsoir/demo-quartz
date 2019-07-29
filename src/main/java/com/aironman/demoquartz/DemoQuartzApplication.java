@@ -30,13 +30,14 @@ public class DemoQuartzApplication {
     Arrays.stream(args).forEach(System.out::println);
 
     if (args.length != 1) {
-        System.out.println("Insufficient arguments. Must be btc or eth.");
-        System.exit(-1);
-    }
-    cryptoType = args[0];
+        System.out.println("Insufficient arguments. Must be btc or eth. Applying btc...");
+        cryptoType = "btc";
+        //System.exit(-1);
+    }else
+        cryptoType = args[0];
     System.out.println("Selected TYPE: " + cryptoType);
 	springApplication.run(args);
-    System.exit(0);
+    //System.exit(0);
     }
     
     @PostConstruct
