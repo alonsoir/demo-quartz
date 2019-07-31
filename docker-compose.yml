@@ -1,9 +1,13 @@
-version: '3.6'
+version: '3.7'
 services:
-  demo-quartz:
+  demo-quartz-btc:
     image: aironman/demo-quartz:0.0.2-SNAPSHOT
-    environment:
-      - CRYPT_TYPE=btc
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CRYPT_TYPE: btc
+    command: java -jar
     links: 
       - "eureka-server"
       - "zookeeper"
@@ -16,7 +20,7 @@ services:
           memory: 512M
       restart_policy:
           condition: on-failure
-    
+
   zookeeper:
     image: confluentinc/cp-zookeeper:5.0.0
     hostname: zookeeper
