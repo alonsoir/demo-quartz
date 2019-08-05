@@ -6,8 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        CRYPT_TYPE: btc
-    command: java -jar
+        - crypt_type=btc
     links: 
       - "eureka-server"
       - "zookeeper"
@@ -20,6 +19,26 @@ services:
           memory: 512M
       restart_policy:
           condition: on-failure
+
+  demo-quartz-eth:
+    image: aironman/demo-quartz:0.0.2-SNAPSHOT
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - crypt_type=eth
+    links:
+      - "eureka-server"
+      - "zookeeper"
+      - "kafka"
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+      restart_policy:
+        condition: on-failure
 
   zookeeper:
     image: confluentinc/cp-zookeeper:5.0.0
