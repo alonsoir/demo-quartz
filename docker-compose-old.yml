@@ -1,0 +1,48 @@
+version: '3.6'
+services:
+  demo-quartz:
+    image: aironman/demo-quartz:0.0.2-SNAPSHOT
+    environment:
+      - CRYPTO_TYPE: "btc"
+    links: 
+      - "eureka-server"
+      - "zookeeper"
+      - "kafka"
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+      restart_policy:
+          condition: on-failure
+    
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+      - "29094:29094"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_LISTENERS: LISTENER_BOB://kafka:29092,LISTENER_FRED://kafka:9092,LISTENER_ALICE://kafka:29094
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_BOB://kafka:29092,LISTENER_FRED://localhost:9092,LISTENER_ALICE://never-gonna-give-you-up:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_BOB:PLAINTEXT,LISTENER_FRED:PLAINTEXT,LISTENER_ALICE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_BOB
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  eureka-server:
+    image:  springcloud/eureka
+    hostname: eureka-server
+    ports:
+      - "8761:8761"
