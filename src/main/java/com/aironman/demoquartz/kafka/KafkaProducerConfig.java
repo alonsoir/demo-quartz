@@ -28,22 +28,28 @@ public class KafkaProducerConfig {
 
     @Value(value = "${ethereum.topic.name}")
     private String ethereumTopicName;
-    
+
+    @Value(value = "${kafka.numPartitions}")
+    private int numPartitions;
+
+    @Value(value = "${kafka.replicationFactor}")
+    private short replicationFactor;
     @Bean
     public KafkaAdmin admin() {
 	Map<String, Object> configs = new HashMap<>();
 	configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
 	return new KafkaAdmin(configs);
     }
-    
+
+    //  NewTopic(String name, int numPartitions, short replicationFactor) {
     @Bean
     public NewTopic topicMessageName() {
-	return new NewTopic(messageTopicName, 10, (short) 2);
+	return new NewTopic(messageTopicName, numPartitions, replicationFactor);
     }
 
     @Bean
     public NewTopic topicEthereumName() {
-        return new NewTopic(ethereumTopicName, 10, (short) 2);
+        return new NewTopic(ethereumTopicName, 10, replicationFactor);
     }
 
     @Bean

@@ -27,7 +27,7 @@ public class DemoQuartzApplication {
     public static void main(String[] args) {
 	SpringApplication springApplication = new SpringApplication(DemoQuartzApplication.class);
 	//springApplication.addListeners(new ApplicationPidFileWriter());
-    Arrays.stream(args).forEach(System.out::println);
+    //Arrays.stream(args).forEach(System.out::println);
 
     if (args.length != 1) {
         System.out.println("Insufficient arguments. Must be btc or eth. Applying btc...");
@@ -35,6 +35,10 @@ public class DemoQuartzApplication {
         //System.exit(-1);
     }else
         cryptoType = args[0];
+    if (!cryptoType.equals("btc") || !cryptoType.equals("eth")){
+        System.out.println("Arguments MUST be btc or eth. Exit. " + cryptoType + " argument was used!");
+        System.exit(-1);
+    }
     System.out.println("Selected TYPE: " + cryptoType);
 	springApplication.run(args);
     //System.exit(0);
@@ -48,7 +52,7 @@ public class DemoQuartzApplication {
     
     @RequestMapping("/greeting")
     public String greeting() {
-	return "Hello from EurekaClient! This is DemoQuartzApplication...";
+	return "Hello from EurekaClient! This is DemoQuartzApplication running " + cryptoType + " mode.";
     }
     
 }
