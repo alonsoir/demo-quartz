@@ -21,7 +21,8 @@ First, figure it out what ip has zookeeper asigned:
           35bed865bcbc        springcloud/eureka                       "java -jar /app.jar"     8 days ago          Up 30 minutes       0.0.0.0:8761->8761/tcp                             demo-quartz_eureka-server_1
           
 
-I found that with latest confluentinc components, topics are created when the app is running, so there will no need to login into kafka container and create the topics.
+Topics are created using KafkaProducerConfig class, topicMessageName method and topicEthereumName method. Topics are created when the app is running, so there will no need to login into kafka container and create the topics.
+
 You can change aironman topic`s name with whatever you want. 
 
 Check application.properties file and change this line:
