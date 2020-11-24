@@ -29,7 +29,7 @@
 		<quartz.version>2.3.2</quartz.version>
 		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
 		<docker-compose-maven-plugin-version>4.0.0</docker-compose-maven-plugin-version>
-		<spring-cloud-starter-eureka-version>1.4.4.RELEASE</spring-cloud-starter-eureka-version>
+		<spring-cloud-starter-eureka-version>1.4.7.RELEASE</spring-cloud-starter-eureka-version>
 		<spring-cloud-starter-feign-version>1.4.7.RELEASE</spring-cloud-starter-feign-version>
 	</properties>
 
